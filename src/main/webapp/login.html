@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+  <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INGRESO</title>
+    <link rel="shortcut icon" href="images/logo_BM.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+  <section class="form-register">
+    <form id="login">
+    <h4>Ingresa a tu cuenta <i class="fa-solid fa-arrow-right-to-bracket"></i></h4>
+    mail: <input class="controls" type="mail" name="mail" id="mail" placeholder="Ingrese su Correo">
+    password: <input class="controls" type="password" name="password" id="password" placeholder="Ingrese su Contraseña">
+      <input class="button" type="submit" value="Entrar">
+    </form>
+    <script>
+      let form = document.getElementById("login");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        let json = {
+          "mail": document.getElementById("mail").value,
+          "password": document.getElementById("password").value,
+          "role": "null_vacio",
+          "fcoins": 0.0,
+        };
+
+        const header = new Headers();
+        header.append("Content-Type", "application/json");
+        header.append("Access-Control-Allow-Origin", "*");
+
+        fetch("./api/users/login", {
+          method: "POST",
+          body: JSON.stringify(json),
+          headers: header
+        }).then(response => response.json())
+                .then(user => {
+                  localStorage.setItem("name", user["name"]);
+                  localStorage.setItem("mail", user["mail"]);
+                  localStorage.setItem("role", user["role"]);
+                  localStorage.setItem("fcoins", user["fcoins"]);
+                  if (user["role"] == "Artist") {
+                    window.location.href = "./indexArtist.html";
+                  } else if (user["role"] == "Buyer") {
+                    window.location.href = "./indexBuyer.html";
+                  } else if (user["mail"] == null) {
+                    location.reload();
+                  }
+                });
+        console.log(json.name + "\n" + json.password);
+      });
+    </script>
+  </section>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLUEMARKET</title>
+    <link rel="shortcut icon" href="images/logo_BM.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <!--Header-->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/js/header.js"></script>
+    
+    <!--Iconos-->
+    <script src="https://kit.fontawesome.com/cc6803ac7c.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="wrapper">
+            <div class="logo">BlueMarket</div>
+            <nav>
+                <a href="indexBuyer.html">Regresar <i class="fa-solid fa-arrow-rotate-left"></i></a>
+                <a href="index.html">Cerrar Sesión <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="content">
+        <section class="profile-container">
+            <img class="img-profile" src="images/userProfile.webp">
+            <div class="first-container">
+                <div class="container1">
+                    <h1>username</h1>
+                    <button id="btn-open-popup1">Recargar Fcoins <i class="fa-solid fa-coins"></i></button>
+                </div>
+                <div class="container2">
+                    <p><b>0</b>Fcoins</p>
+                    <p><b>0</b>Compras</p>
+                </div>
+                <div class="container3">
+                    <h2>username</h2>
+                    <p class="p-name">name</p>
+                    <p class="p-mail">mail</p>
+                </div>
+            </div>
+    </section>
+</section>
+        <section class="content">
+            <form action="">
+                <input type="text" class="search" id="search" placeholder="Buscar">
+            </form>
+            <div class="categories" id="categories">
+                <a href="#" class="active">Todos</a>
+                <a href="#">Animales</a>
+                <a href="#">Ciudades</a>
+                <a href="#">Fotografia</a>
+                <a href="#">Plantas</a>
+                <a href="#">Animados</a>
+            </div>
+            </section>
+            <section class="grid" id="grid">
+                <div class="item" 
+                    data-category="plantas" 
+                    data-tags="plantas flor atardecer rojo naranja paisajes"
+                    data-description="Paisaje de un campo de flores rojas mientras atardece">
+                    <div class="item-contenido">
+                        <img src="images/plantas5.jpg">
+                    </div>
+                </div>
+            </section>
+    
+            <section class="overlay" id="overlay">
+                <div class="image-container">
+                    <button id="btn-close-popup"><i class="fas fa-times"></i></button>
+                    <img src="">
+                </div>
+                <p class="description"></p>
+            </section>
+            <script src="https://cdn.jsdelivr.net/npm/muuri@0.9.5/dist/muuri.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/web-animations-js@2.3.2/web-animations.min.js"></script>
+            <script src="js/gallery.js"></script>
+    
+    </main>
+    <div class="overlayPopup" id="overlayPopup">
+        <div class="popup" id="popup">
+            <a href="#" id="btn-close-popup1" class="btn-close-popup1"><i class="fas fa-times"></i></a>
+            <h3>Recarga tus Fcoins</h3>
+            <h4>Ingresa la cantidad que deseas recargar</h4>
+            <form id="recharge">
+                fcoins: <input class="controls" type="text" name="fcoins" id="refcoins" placeholder="Fcoins">
+                <input class="button1" type="submit" id="acepted"value="Aceptar">
+                <input class="button1" type="submit" id="cancelled"value="Cancelar">
+            </form>
+            <script>
+                let form = document.getElementById("refcoins");
+                form.addEventListener("submit", function (e){
+                    e.preventDefault();
+                    let json = {
+                        "mail": localStorage.getItem("mail"),
+                        "fcoins": localStorage.getItem("fcoins")
+                    };
+                    const header = new Headers();
+                    header.append("Content-Type", "application/json");
+                    fetch("./api/users", { method: "PUT",
+                        body: JSON.stringify(json),
+                        headers: header
+                    });
+                });
+            </script>
+        </div>
+    </div>
+    <script src="js/popup.js"></script>
+    <footer class="footerPage">
+        <div class="section1">
+            <div class="box">
+                <figure>
+                    <a href="#">
+                        <img src="images/logo_BM.png" width="55px" height="55px">
+                    </a>
+                </figure>
+            </div>
+            <div class="box">
+                <h2>SOBRE NOSOTROS</h2>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, et!</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, et!</p>
+            </div>
+            <div class="box">
+                <h2>SÍGUENOS</h2>
+                <div class="social-media">
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                </div>
+            </div>
+        </div>
+        <div class="section2">
+            <small>&copy; 2022 <b>BlueMarket</b> - Todos los derechos reservados.</small>
+        </div>
+    </footer>
+</body>
+</html>
