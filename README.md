@@ -1,6 +1,7 @@
 # BlueMarketFinal
 
 Integrantes: Daniel Alvarado Fuentes y Valeria Muñoz Quiroga
+
 Se presenta un proyecto final de la asignatura Programación 2, el cual usa web services, archivos SQL, stack
 tecnológicos y frameworks para su ejecución. En el cual se cumple con los requerimientos:
 
